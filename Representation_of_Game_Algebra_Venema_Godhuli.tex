@@ -26,8 +26,8 @@ discussion will be mounted. The basic idea is as follows: Assume that we are dea
 With any game g and each player i we will associate a outcome relation $R_{g}^{i}$; i.e, a relation between positions and set of positions. \\
 Intuitively, if a position p is in the relation $R_{g}^{i}$ with the set T of positions, this means that in the position p, player i has a strategy of playing the game g in such a way that after play, the resulting state belongs to the set T. \\ 
 In this paper we confine ourselves to the following restrictions on the outcome relations: \\ \\
-\underline{\textbf{Monotonicity:}} If $pR_{g}^{i}$ and $T\subseteq U$ then $pR_{g}^{i}$ \\ \\
-\underline{\textbf{Consistency:}} If $pR_{g}^{i}$ then not $pR_{g}^{1-i}(B-T)$ \\ \\
+\underline{\textbf{Monotonicity:}} If $pR_{g}^{i}T$ and $T\subseteq U$ then $pR_{g}^{i}U$ \\ \\
+\underline{\textbf{Consistency:}} If $pR_{g}^{i}T$ then not $pR_{g}^{1-i}(B-T)$ \\ \\
 Here i=0,1. \\ \\
 Let us pause to unpack the meaning. \\ \\
 Whar does monotonicity capture? \\
@@ -37,22 +37,22 @@ It says that the two players cannot simultaneously guarantee complementary outco
 From here we have a natural notion of equivalence between games, making g and h equivalent on a certain game board if both  players have the same power in g as in h; that is, if $R_{g}^{i}=R_{h}^{i}$ for each player i. \\ \\
 Below we list some of the most natural game operations that one could consider in this context: \\ \\
 \underline{\textbf{choice:}} $g \vee_{i} h$ is the game in which the first move is that player i chooses whether to play g or h. \\ \\
-\underline{\textbf{dualization:}} -g is the game g but with the roles of the two players reversed. \\ \\
-\underline{\textbf{composition:}} $g \diamond h$ is the game in which a play of g is followed by a play of h repeatedly. \\ \\
+\underline{\textbf{dualization:}} $-g$ is the game $g$ but with the roles of the two players reversed. \\ \\
+\underline{\textbf{composition:}} $g \diamond h$ is the game in which a play of $g$ is followed by a play of $h$ repeatedly. \\ \\
 We have the following natural definitions (1) of outcome relations of composed games: 
 \begin{itemize}
 
-\item $pR^{i}_{g \vee_{i}T$ iff $pR_{g}^{i}T$ or $pR_h ^{i}T$
-\item $pR^{i}_{g \vee_{1-i} hT$ iff $pR_{g}^{i}T$ and $pR_h ^{i}T$
+\item $pR^{i}_{g \vee_{i}h}T$ iff $pR_{g}^{i}T$ or $pR_h ^{i}T$
+\item $pR^{i}_{g \vee_{1-i} h}T$ iff $pR_{g}^{i}T$ and $pR_h ^{i}T$
 \item $pR_{-g}^{i}T$ iff $pR_{g}^{1-i}T$
 \item $pR_{-g}^{i}T$ iff $pR_{g}^{1-i}T$
-\item $pR_{g \diamond h}^{i}$ iff $pR_{g}^{i}U$ for some set U such that $uR_{h}^{i}T$ for all u \in U
+\item $pR_{g \diamond h}^{i}}T$ iff $pR_{g}^{i}U$ for some set U such that $uR_{h}^{i}T$ for all u \in U
 \end{itemize} \\ \\
 It is easily verifiable that the conditions of monotonicity and consistency are propagated. Notion of game equivalence also extends.
 \section{Capturing all this in language of logic and raising the axiomatization problem}
 Define game language comprising of atomic games and function symbols $\{\vee_{0},\vee_{1},-,\diamond\}$. A game expression is a term in this game language built out of atomic games and function symbols. \\
 Eg: $g \vee_{0}h, g \vee_{1} h, -g, g\; \lozenge \; h, g\; \lozenge -h$ etc \\ \\
-Models for this language are called game boards. A game board is a pair $\mathcal{B}=(B,R)$ such that B is a set of positions and R is a map assigning to each atomic game x a pair $(R^{0}_{x}, R^{1}_{x})$ of outcome relations on B that are monotone and consistent. \\
+Models for this language are called game boards. A game board is a pair $\mathcal{B}=(B,R)$ such that B is a set of positions and R is a map assigning to each atomic game x, a pair $(R^{0}_{x}, R^{1}_{x})$ of outcome relations on B that are monotone and consistent. \\
 Inductively, we can use (1) to define outcome relations for composed games. \\
 We say that two game expressions are equivalent on a game board $\mathcal{B}=(B,R)$, notation: $\mathcal{B} \vDash g \approx h$ if $R^{i}_{g}=R^{i}_{h}$ for each player i. \\ \\
 We call g and h are equivalent if they are equivalent on every game board. \\ \\
@@ -87,20 +87,20 @@ Fix a set $B$.
 \end{definition} \\ \\ \\
 Consider the following operations on $M = \mathcal{G}(B)$:
 \[
-(R_1, R_2) \sqcup (S_1, S_2) = (R_1 \cup S_1, \; R_2 \cup S_2) 
-\quad \text{representing } g \lor h,
+(R_1, R_2) \sqcup (S_1, S_2) = (R_1 \cup S_1, \; R_2 \cup S_2):
+\quad \text{representing } g \vee_{0} h,
 \]
 \[
-(R_1, R_2) \sqcap (S_1, S_2) = (R_1 \cap S_1, \; R_2 \cup S_2)
-\quad \text{representing } g \land h,
+(R_1, R_2) \sqcap (S_1, S_2) = (R_1 \cap S_1, \; R_2 \cup S_2):
+\quad \text{representing } g \vee_{1} h,
 \]
 \[
-(R_1, R_2)^{-} = (R_2, R_1) 
-\quad \text{representing } \neg g,
+(R_1, R_2)^{-} = (R_2, R_1):
+\quad \text{representing } -g,
 \]
 \[
-(R_1, R_2) \square (S_1, S_2) = (R_1 \circ S_1, \; R_2 \circ S_2) 
-\quad \text{representing } g \lozenge h,
+(R_1, R_2) \square (S_1, S_2) = (R_1 \circ S_1, \; R_2 \circ S_2):
+\quad \text{representing } g \; \lozenge \; h,
 \]
 where
 \[
@@ -143,34 +143,27 @@ x \lor (x \land y) & \approx & x & \text{(G4)} \\[6pt]
 x \lor (y \land z) & \approx & (x \lor y) \land (x \lor z) & \text{(G5)} \\[6pt]
 -(-x) & \approx & x & \text{(G6)} \\[6pt]
 -(x \lor y) & \approx & -x \land -y & \text{(G7)} \\[6pt]
-(x \circ y) \circ z & \approx & x \circ (y \circ z) & \text{(G8)} \\[6pt]
-(x \lor y) \circ z & \approx & (x \circ z) \lor (y \circ z) & \text{(G9)} \\[6pt]
--\,x \circ -y & \approx & -(x \circ y) & \text{(G10)} \\[6pt]
-y \preceq z & \to & x \circ y \preceq x \circ z & \text{(G11)} 
+(x\; \lozenge \; y) \; \lozenge \; z & \approx & x\; \lozenge\; (y \; \lozenge \; z) & \text{(G8)} \\[6pt]
+(x \lor y)\; \lozenge z & \approx & (x\; \lozenge \; z) \lor (y \; \lozenge \; z) & \text{(G9)} \\[6pt]
+-\,x \; \lozenge \; -y & \approx & -(x \; \lozenge \; y) & \text{(G10)} \\[6pt]
+y \preceq z & \to & x \; \lozenge \; y \preceq x \; \lozenge \; z & \text{(G11)} 
 \end{array}
 \]
-
-\medskip
-I would like to draw your attention to G11. What G11 tells us is that monotonicity is built into $\diamond$. This observation will be useful later. 
-
-Here $s \preceq t$ is an abbreviation of the equation $s \lor t \approx t$.
-
-\medskip
-
+\\
+I would like to draw your attention to G11. What G11 tells us is that monotonicity is built into $\lozenge$ operator. This observation will be useful later. \\ \\
 A \textbf{\emph{distributive lattice}} is any algebra 
 $\mathcal{D} = (D, \lor, \land)$ satisfying the equations G1--G5;  
 a \textbf{\emph{de Morgan lattice}} is an algebra 
 $\mathcal{M} = (M, \lor, \land, -)$ satisfying the equations G1--G7.  
 Finally, a \textbf{\emph{game algebra}} is a structure 
-$\mathcal{G} = (G, \lor, \land, -, \circ)$ satisfying the axioms G1--G11. \\ 
-
-We let $\mathbf{G}$ denote the class of game algebras.Existence of game algebra is guaranteed by existence of board algebras.
+$\mathcal{G} = (G, \lor, \land, -, \lozenge)$ satisfying the axioms G1--G11. \\ \\ 
+We let $\mathbf{G}$ denote the class of game algebras. Existence of game algebra is guaranteed by existence of board algebras.
 \section{Statement of the central Theorem and how it solves the problem of axiomatization}
 \textbf{Theorem:} Every game algebra is isomorphic to a board algebra. 
 \[
 \mathcal{G}=\mathbb{B}\]
 So let us try to see why this solves the axiomatization problem.\\ We get $G \vDash g \approx h  \; \forall \; G$ iff $\mathbb{B} \vDash g \approx h \; \forall \; \mathbb{B}$ \\
-By \textbf{\emph{Birkhoff Completeness Theorem}} for equational logic, we get $g \approx h$ is derivable from G1-11 iff $G \vDash g \approx h$. So $G \vDash g \approx h \forall G$ iff $\mathbb{B} \vDash g \approx h \forall \mathbb{B}$ iff $g \approx h$ is derivable from G1-11.\\ \\
+By \textbf{\emph{Birkhoff Completeness Theorem}} for equational logic, we get $g \approx h$ is derivable from G1-11 iff $G \vDash g \approx h$. So $G \vDash g \approx h \; \forall \; G$ iff $\mathbb{B} \vDash g \approx h \; \forall \; \mathbb{B}$ iff $g \approx h$ is derivable from G1-11.\\ \\
 So, $g$ and $h$ are equivalent game expressions iff $g \approx h$ is derivable from G1-11. 
 \section{Diving into the proof}
 \subsection{A bird's eye view of the task ahead}
@@ -178,23 +171,23 @@ Let us briefly sketch the intuitions underlying the proof. \\
 Obviously, the first problem that we encounter when trying to represent a game algebra as a board algebra is to find a suitable board. We shall find this. Details to be divulged later. \\ \\
 Now consider the maps \\
 \begin{center}
-   $\diamond_{g}: G \to G$ \\
-   $\diamond_{g}a=g\diamond a$ \\
+   $\lozenge_{g}: G \to G$ \\
+   $\lozenge_{g}a=g \; \lozenge \; a$ \\
 \end{center}
-These maps are monotone by G11. So this gives us idea that $\diamond g$ can be 'thought' of as some monotone outcome relation on the 'board' lurking in the background (to be brought to light soon).\\
-So with every element $g$ we can associate a monotone outcome relation on the 'board'. Right now represented by $\diamond_g$. \\ \\
+These maps are monotone by G11. So this gives us idea that $\lozenge g$ can be 'thought' of as some monotone outcome relation on the 'board' lurking in the background (to be brought to light soon).\\
+So with every element $g$ we can associate a monotone outcome relation on the 'board'. Right now represented by $\lozenge_g$. \\ \\
 However, there are still two problems we run into: 
 \begin{enumerate}
-    \item This association $g \mapsto\diamond_g$ need not be injective. To resolve this we will involve a separation argument, by adding elements to $\mathbb{G}$, one of which will separate $g$ and $h$, two distinct elements. 
+    \item This association $g \mapsto\lozenge_g$ need not be injective. To resolve this we will involve a separation argument, by adding elements to $\mathbb{G}$, one of which will separate $g$ and $h$, two distinct elements. 
     \item So far with all this (vague) construction of the isomorphism that we ought to make, we are at the level of monotone only. We must have consistency too to be in the realm of board algebra. We will show that any monotone outcome algebra can be embedded in a board algebra. 
 \end{enumerate}
 \subsection{Jigsaw pieces of the task, zoomed out}
 \textbf{Definition:}
-Let $\mathcal{G} = (G,\vee,\wedge,\neg,\circ)$ be a game algebra. A 
+Let $\mathcal{G} = (G,\vee,\wedge,-,\lozenge)$ be a game algebra. A 
 \emph{module over $\mathcal{G}$} is an algebra 
-$\mathcal{M} = (M,\vee,\wedge,\neg,(\Diamond_g)_{g\in G})$ 
-such that $(M,\vee,\wedge,\neg)$ is a de Morgan algebra, and 
-$(\Diamond_g)_{g\in G}$ is a family of unary monotone operations on $M$ 
+$\mathcal{M} = (M,\vee,\wedge,-,(\lozenge_g)_{g\in G})$ 
+such that $(M,\vee,\wedge,-)$ is a de Morgan algebra, and 
+$(\lozenge_g)_{g\in G}$ is a family of unary monotone operations on $M$ 
 satisfying the following equations:
 \begin{align*}
 (M1) \quad & \lozenge_{g\vee h}x \approx \lozenge_g x \vee \lozenge_h x \\
@@ -208,8 +201,8 @@ there is an $x \in M$ such that $\lozenge_g x \neq \lozenge_h x$.
 
 \noindent
 Note that with this definition, we may indeed see a given game algebra 
-$\mathcal{G} = (G,\vee,\wedge,\neg,\circ)$ as a module over its de Morgan 
-reduct if we put $\Diamond_g a = g \circ a$. We will not introduce any 
+$\mathcal{G} = (G,\vee,\wedge,-,\lozenge)$ as a module over its de Morgan 
+reduct if we put $\Diamond_g a = g \; \lozenge \; a$. We will not introduce any 
 notation to distinguish these two perspectives on game algebras. \\ \\
 Our proof of the representation theorem for game algebras involves the 
 following three steps:
@@ -233,8 +226,7 @@ A \emph{filter} is a subset $F$ of $D$ which is upward closed
 (if $a \in F$ and $a \leq b$ then $b \in F$) and closed under meets 
 (if $a, b \in F$ then $a \wedge b \in F$). 
 A filter $F$ is \emph{prime} if $a \vee b \in F$ implies that at least one 
-of $a$ and $b$ belongs to $F$. 
-
+of $a$ and $b$ belongs to $F$. \\ \\
 Let $B_{\mathcal{D}}$ denote the set of prime filters of $\mathcal{D}$.  
 Given an element $a \in D$, define
 \[
@@ -248,8 +240,6 @@ $a$ of $D$ such that $a \in p$ for every $p \in T$, or, equivalently,
 \[
    F_T = \{\, a \in D \mid T \subseteq \hat{a} \,\}.
 \]
-
-
 A set $C$ of prime filters is \emph{closed} if it is the intersection of 
 sets of the form $\hat{a}$; or, equivalently, if 
 \[
@@ -446,7 +436,7 @@ Similarly, elements smaller than $(a,\bot)$ are of the form $(-,\bot)$. So sendi
 The above highlights another utility of adding $\top$ and $\bot$. Adding anything else would not tell us easily(if at all possibly) where exactly to send such elements. Top/bottom makes life easy due to its cannonical relationship with other elements. We know exactly what to do with them. \\ 
 Formally, we define, for an arbitrary element $g \in G$, the map 
 \[
-\Diamond'_g : G' \to G'
+\lozenge'_g : G' \to G'
 \]
 by putting
 \[
