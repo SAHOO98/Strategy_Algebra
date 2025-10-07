@@ -13,7 +13,6 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-
 This report takes a tour through Venema’s approach to the axiomatization of game equivalence. We start with outcome relations and their tame little properties, shift gears into a logical language, and then trade syntax for algebra via board and game algebras. The centerpiece is the representation theorem that every game algebra is secretly just a board algebra in disguise. Along the way we meet modules, prime filters, and separability tricks. Compared with Goranko’s syntactic route through normal forms, Venema’s path is more semantic and algebraic—less about juggling formulas and more about building structures.
 
 \end{abstract}
@@ -22,7 +21,7 @@ This report takes a tour through Venema’s approach to the axiomatization of ga
 \section{The Set-up}
 
 Let us begin with a bare-bones understanding of the framework on which this 
-discussion will be mounted. The basic idea is as follows: Assume that we are dealing with 2 players, called 0 and 1, and with a game board which for the moment will be just a set B of objects that we call states or positions. \\
+discussion will be mounted. The basic idea is as follows: Assume that we are dealing with 2 players, called 0 and 1, and with a game board which for the moment will be just a set $B$ of objects that we call states or positions. \\
 With any game g and each player i we will associate a outcome relation $R_{g}^{i}$; i.e, a relation between positions and set of positions. \\
 Intuitively, if a position p is in the relation $R_{g}^{i}$ with the set T of positions, this means that in the position p, player i has a strategy of playing the game g in such a way that after play, the resulting state belongs to the set T. \\ 
 In this paper we confine ourselves to the following restrictions on the outcome relations: \\ \\
@@ -33,12 +32,12 @@ Let us pause to unpack the meaning. \\ \\
 Whar does monotonicity capture? \\
 If T is a set of positions that is contained in another set of positions U, then if at p, i can force the outcome of g to lie in T, then i can force the outcome of g to be in U. Lying in T means lying in U. So the property of monotonicity captures this idea. \\ \\
 What does this consistency condition entail? \\ 
-It says that the two players cannot simultaneously guarantee complementary outcomes from the same position. If player i can force the game into some set of positions T starting from p, then the opponent (player 1 − i) cannot, from that same position, force the game into the complement of T. In other words, strategies of the two players are mutually exclusive: one player’s ability to secure an outcome rules out the other’s ability to guarantee its negation. This reflects the intuitive idea that the game should not allow contradictory guarantees. \\ \\
+It says that the two players cannot simultaneously guarantee complementary outcomes from the same position. If player i can force the game into some set of positions T starting from p, then the opponent (player 1$-$i) cannot, from that same position, force the game into the complement of T. In other words, strategies of the two players are mutually exclusive: one player’s ability to secure an outcome rules out the other’s ability to guarantee its negation. This reflects the intuitive idea that the game should not allow contradictory guarantees. \\ \\
 From here we have a natural notion of equivalence between games, making g and h equivalent on a certain game board if both  players have the same power in g as in h; that is, if $R_{g}^{i}=R_{h}^{i}$ for each player i. \\ \\
 Below we list some of the most natural game operations that one could consider in this context: \\ \\
 \underline{\textbf{choice:}} $g \vee_{i} h$ is the game in which the first move is that player i chooses whether to play g or h. \\ \\
 \underline{\textbf{dualization:}} $-g$ is the game $g$ but with the roles of the two players reversed. \\ \\
-\underline{\textbf{composition:}} $g \diamond h$ is the game in which a play of $g$ is followed by a play of $h$ repeatedly. \\ \\
+\underline{\textbf{composition:}} $g \; \lozenge \; h$ is the game in which a play of $g$ is followed by a play of $h$ repeatedly. \\ \\
 We have the following natural definitions (1) of outcome relations of composed games: 
 \begin{itemize}
 
@@ -46,16 +45,16 @@ We have the following natural definitions (1) of outcome relations of composed g
 \item $pR^{i}_{g \vee_{1-i} h}T$ iff $pR_{g}^{i}T$ and $pR_h ^{i}T$
 \item $pR_{-g}^{i}T$ iff $pR_{g}^{1-i}T$
 \item $pR_{-g}^{i}T$ iff $pR_{g}^{1-i}T$
-\item $pR_{g \diamond h}^{i}}T$ iff $pR_{g}^{i}U$ for some set U such that $uR_{h}^{i}T$ for all u \in U
+\item $pR_{g \; \lozenge \; h}^{i}}T$ iff $pR_{g}^{i}U$ for some set U such that $uR_{h}^{i}T$ for all u \in U
 \end{itemize} \\ \\
 It is easily verifiable that the conditions of monotonicity and consistency are propagated. Notion of game equivalence also extends.
 \section{Capturing all this in language of logic and raising the axiomatization problem}
-Define game language comprising of atomic games and function symbols $\{\vee_{0},\vee_{1},-,\diamond\}$. A game expression is a term in this game language built out of atomic games and function symbols. \\
-Eg: $g \vee_{0}h, g \vee_{1} h, -g, g\; \lozenge \; h, g\; \lozenge -h$ etc \\ \\
+Define game language comprising of atomic games and function symbols $\{\vee_{0},\vee_{1},-,\lozenge\}$. A game expression is a term in this game language built out of atomic games and function symbols. \\
+Eg: $g \vee_{0}h, g \vee_{1} h, -g, g \; \lozenge \; h, g \; \lozenge \; -h$ etc \\ \\
 Models for this language are called game boards. A game board is a pair $\mathcal{B}=(B,R)$ such that B is a set of positions and R is a map assigning to each atomic game x, a pair $(R^{0}_{x}, R^{1}_{x})$ of outcome relations on B that are monotone and consistent. \\
 Inductively, we can use (1) to define outcome relations for composed games. \\
 We say that two game expressions are equivalent on a game board $\mathcal{B}=(B,R)$, notation: $\mathcal{B} \vDash g \approx h$ if $R^{i}_{g}=R^{i}_{h}$ for each player i. \\ \\
-We call g and h are equivalent if they are equivalent on every game board. \\ \\
+We call $g$ and $h$ are equivalent if they are equivalent on every game board. \\ \\
 \textbf{An obvious problem is to find a complete axiomatization of this semantic notion of equivalence}
 \section{Reformulating in the language of algebras}
 We have seen that in a game board $B$, for any atomic $g$, we have 
@@ -66,68 +65,62 @@ Thus,
 \[
 R^g_i \subseteq \mathcal{P}(B \times \mathcal{P}(B)), \quad i = 0,1.
 \]
-
 This motivates the definition of a class of concrete algebras 
 called \emph{board algebras}.
-\subsection{Board Algebras: A class of concrete algebras}
-Fix a set $B$.
-\begin{itemize}
-    \item $\mathcal{O}(B) = \mathcal{P}(B \times \mathcal{P}(B))$: all outcome relations on $B$.
-    \item $\mathcal{O}_m(B) \subseteq \mathcal{O}(B)$: the set of monotone outcome relations.
-    \item $\mathcal{G}(B)$: the set of pairs of outcome relations,
-    \[
-    \mathcal{G}(B) = \mathcal{O}(B) \times \mathcal{O}(B).
-    \]
-    \item $\mathcal{G}_m(B)$: the set of pairs of monotone outcome relations,
-    \[
-    \mathcal{G}_m(B) = \mathcal{O}_m(B) \times \mathcal{O}_m(B).
-    \]
-    \item $\mathcal{G}_{mc}(B)$: the set of consistent pairs of monotone outcome relations.
-\end{itemize}
-\end{definition} \\ \\ \\
-Consider the following operations on $M = \mathcal{G}(B)$:
+\subsection{Board Algebras: A class of concrete algebras} \\
+Let \( B \) be a set. We denote by 
 \[
-(R_1, R_2) \sqcup (S_1, S_2) = (R_1 \cup S_1, \; R_2 \cup S_2):
-\quad \text{representing } g \vee_{0} h,
+O(B) = \mathcal{P}(B \times \mathcal{P}(B))
+\]
+the collection of all \emph{outcome relations} on \( B \), and by \( O_m(B) \subseteq O(B) \) the subset consisting of \emph{monotone} outcome relations.  
+We then set
+\[
+G(B) = O(B) \times O(B), \quad 
+G_m(B) = O_m(B) \times O_m(B),
+\]
+and let \( G_{\mathrm{mc}}(B) \subseteq G_m(B) \) denote the set of all \emph{consistent pairs} of monotone outcome relations.\\
+An element \( (R_0, R_1) \in G_{\mathrm{mc}}(B) \) can be viewed as a possible interpretation of a game played on the board \( B \), subject to the requirements of monotonicity and consistency.\\
+To express inductive game constructions more elegantly, we define a binary operation \( \circ \) on outcome relations by
+\[
+R \circ S := \{ (p, T) \mid pR U \text{ for some } U \text{ such that } uS T \text{ for all } u \in U \}.
+\]
+Since outcome relations are subsets of \( \mathcal{P}(B \times \mathcal{P}(B)) \), they naturally inherit standard set-theoretic operations such as union and intersection.  
+Accordingly, for player \( 0 \),
+\[
+\begin{aligned}
+R_{g \lor h}^0 &= R_g^0 \cup R_h^{0}, \\
+R_{g \land h}^0 &= R_g^0 \cap R_h^0, \\
+R_{g \lozenge h}^0 &= R^g_0 \circ R_h^0,
+\end{aligned}
+\]
+and the same pattern applies to player \( 1 \).\\ \\
+The equivalence of two game expressions is defined in terms of the outcome relations for both players in the obvious way. \\ \\ 
+Let us now fix a set \( B \) and define the following operations on
+\[
+G(B) = O(B) \times O(B):
 \]
 \[
-(R_1, R_2) \sqcap (S_1, S_2) = (R_1 \cap S_1, \; R_2 \cup S_2):
-\quad \text{representing } g \vee_{1} h,
-\]
+\begin{aligned}
+(R_1, R_2) \sqcup (S_1, S_2) &= (R_1 \cup S_1,\, R_2 \cap S_2), \\
+(R_1, R_2) \sqcap (S_1, S_2) &= (R_1 \cap S_1,\, R_2 \cup S_2), \\
+(R_1, R_2)^{-} &= (R_2, R_1), \\
+(R_1, R_2) \square (S_1, S_2) &= (R_1 \circ S_1,\, R_2 \circ S_2).
+\end{aligned}
+\] \\
+We call
 \[
-(R_1, R_2)^{-} = (R_2, R_1):
-\quad \text{representing } -g,
+\mathcal{G(B)} = \big(G(B), \sqcup, \sqcapcap, -, \square \big)
 \]
+the \emph{full outcome algebra} over \( B \).  
+Its subalgebras are referred to as \emph{outcome algebras} over \( B \).
+An outcome algebra \( (A, \sqcup, \sqcap, -}, \square) \) is said to be \emph{monotone} if \( A \subseteq G_m(B) \), and a \emph{board algebra} if \( A \subseteq G_{\mathrm{mc}}(B) \).\\ \\
+The corresponding full structures are:
 \[
-(R_1, R_2) \square (S_1, S_2) = (R_1 \circ S_1, \; R_2 \circ S_2):
-\quad \text{representing } g \; \lozenge \; h,
+\mathcal{G}}_m(B) = \big(G_m(B), \sqcup, \sqcap, -, \square\big), \quad
+\mathcal{G}_{\mathrm{mc}}(B) = \big(G_{\mathrm{mc}}(B), \sqcup, \sqcap, -, \square\big),
 \]
-where
-\[
-R \circ S := \{ (p, T) \mid (p, U) \in R \text{ for some } U \subseteq T 
-\text{ and } \forall u \in U, (u, T) \in S \}.
-\]
-Now define the \textbf{\emph{full outcome algebra}} on $B$ to be the structure
-\[
-\mathcal{O}(B) = (\mathcal{G}(B), \sqcup, \sqcap, {}^{-}, \square).
-\]
-Subalgebras of $\mathcal{O}(B)$ are called \textbf{\emph{outcome algebras on $B$}}.
-
-An outcome algebra of the form $(A, \sqcup, \sqcap, {}^{-}, \square)$ 
-is called \textbf{\emph{monotone}} if $A \subseteq \mathcal{G}_m(B)$ 
-and a \textbf{\emph{board algebra}} if $A \subseteq \mathcal{G}_{mc}(B)$.
-
-The \textbf{\emph{full monotone outcome algebra}} on $B$ and the \textbf{\emph{full board algebra}} on $B$ 
-are defined as the structures
-\[
-\mathcal{G}_m(B) = (\mathcal{G}_m(B), \sqcup, \sqcap, {}^{-}, \square), 
-\quad
-\mathcal{G}_{mc}(B) = (\mathcal{G}_{mc}(B), \sqcup, \sqcap, {}^{-}, \square),
-\]
-respectively.
-
-The class of board algebras is denoted by $\mathbb{B}$.
-
+known respectively as the \emph{full monotone outcome algebra} and the \emph{full board algebra} over \( B \). \\ \\
+The class of all board algebras is denoted by \( \mathsf{B} \).\\ \\
 Equivalence of game expressions can now simply be stated as the validity of the corresponding game equation in the class of board algebras. \\ \\
 \textbf{Definition:} Two game expressions $g$ and $h$ are called equivalent, notation: $\mathbb{B}\vDash g \approx h$, if the equation $g \approx h$ is valid in every board algebra.  
 \subsection{Rephrasing the axiomatization problem}
@@ -135,19 +128,19 @@ The problem of axiomatizing the notion of game equivalence thus reduces to findi
 \subsection{Game Algebras: A class of abstract algebras}
 \noindent The following are Van Benthem's proposed axioms. 
 \[
-\begin{array}{rcll}
-x \lor x & \approx & x & \text{(G1)} \\[6pt]
-x \lor y & \approx & y \lor x & \text{(G2)} \\[6pt]
-x \lor (y \lor z) & \approx & (x \lor y) \lor z & \text{(G3)} \\[6pt]
-x \lor (x \land y) & \approx & x & \text{(G4)} \\[6pt]
-x \lor (y \land z) & \approx & (x \lor y) \land (x \lor z) & \text{(G5)} \\[6pt]
--(-x) & \approx & x & \text{(G6)} \\[6pt]
--(x \lor y) & \approx & -x \land -y & \text{(G7)} \\[6pt]
-(x\; \lozenge \; y) \; \lozenge \; z & \approx & x\; \lozenge\; (y \; \lozenge \; z) & \text{(G8)} \\[6pt]
-(x \lor y)\; \lozenge z & \approx & (x\; \lozenge \; z) \lor (y \; \lozenge \; z) & \text{(G9)} \\[6pt]
--\,x \; \lozenge \; -y & \approx & -(x \; \lozenge \; y) & \text{(G10)} \\[6pt]
-y \preceq z & \to & x \; \lozenge \; y \preceq x \; \lozenge \; z & \text{(G11)} 
-\end{array}
+\begin{array}{llcl}
+x \lor x \approx x & & x \land x \approx x & \text{(G1)} \\[4pt]
+x \lor y \approx y \lor x & & x \land y \approx y \land x & \text{(G2)} \\[4pt]
+x \lor (y \lor z) \approx (x \lor y) \lor z & & x \land (y \land z) \approx (x \land y) \land z & \text{(G3)} \\[4pt]
+x \lor (x \land y) \approx x & & x \land (x \lor y) \approx x & \text{(G4)} \\[4pt]
+x \lor (y \land z) \approx (x \lor y) \land (x \lor z) & & x \land (y \lor z) \approx (x \land y) \lor (x \land z) & \text{(G5)} \\[4pt]
+-(-x) \approx x & & & \text{(G6)} \\[4pt]
+-(x \lor y) \approx (-x) \land (-y) & & -(x \land y) \approx (-x) \lor (-y) & \text{(G7)} \\[4pt]
+(x \; \lozenge \; y)\; \lozenge \; z \approx x \; \lozenge \; (y \; \lozenge \; z) & & & \text{(G8)} \\[4pt]
+(x \lor y)\; \lozenge \; z \approx (x \; \lozenge \; z) \lor (y \; \lozenge \; z) & & (x \land y)\; \lozenge \; z \approx (x \; \lozenge \; z) \land (y \; \lozenge \; z) & \text{(G9)} \\[4pt]
+ -x \; \lozenge \; -y \approx -(x \; \lozenge \; y) & & & \text{(G10)} \\[4pt]
+ y \preceq z \rightarrow x \; \lozenge \; y \preceq x \; \lozenge \; z & & & \text{(G11)} \\
+ \end{array}
 \]
 \\
 I would like to draw your attention to G11. What G11 tells us is that monotonicity is built into $\lozenge$ operator. This observation will be useful later. \\ \\
@@ -178,7 +171,7 @@ These maps are monotone by G11. So this gives us idea that $\lozenge g$ can be '
 So with every element $g$ we can associate a monotone outcome relation on the 'board'. Right now represented by $\lozenge_g$. \\ \\
 However, there are still two problems we run into: 
 \begin{enumerate}
-    \item This association $g \mapsto\lozenge_g$ need not be injective. To resolve this we will involve a separation argument, by adding elements to $\mathbb{G}$, one of which will separate $g$ and $h$, two distinct elements. 
+    \item This association $g \mapsto\lozenge_g$ need not be injective. To resolve this we will involve a separation argument, by adding elements to $G$, one of which will separate $g$ and $h$, two distinct elements. 
     \item So far with all this (vague) construction of the isomorphism that we ought to make, we are at the level of monotone only. We must have consistency too to be in the realm of board algebra. We will show that any monotone outcome algebra can be embedded in a board algebra. 
 \end{enumerate}
 \subsection{Jigsaw pieces of the task, zoomed out}
@@ -215,9 +208,8 @@ following three steps:
     $\mathcal{G}$, then $\mathcal{G}$ is isomorphic to some monotone outcome 
     algebra over $\mathcal{M}$.
     \item Finally, we will prove that any monotone outcome algebra can be 
-    embedded in a board algebra, cf.\ Proposition 6.1.
-\end{enumerate}
-
+    embedded in a board algebra.
+\end{enumerate} \\
 The proof of Theorem is immediate from these results.
 \subsection{Repository of tools}
 
@@ -269,13 +261,13 @@ let $Q_{\lozenge}$ be the outcome relation on the board of prime filters of $\ma
 p Q_{\lozenge} T \quad \text{iff} \quad \lozenge a \in p \ \text{for all } a \in F_{T}.
 \]
 It can be checked this outcome relation is monotone. \\ \\
-Below we state and sketch the proof of The Prime Filter Theorem which will be useful now and what is to come. \\ \\
+Below we state and sketch the proof of The Prime Filter Theorem which will be useful now and in what is to come. \\ \\
 \textbf{Theorem:} $(D,\vee,\wedge)$ be a distributive lattice and let $F$ be a filter with $x_0\notinF$. 
 Then there is a prime filter $P$ such that $x_0\notin P$ and $F\subseteq P$.\\ \\
 \textbf{Proof:} The proof idea is as follows: We can consider the set of all such filters K with the property that $x_0 \notin K $. This set is non-empty. It can be shown every chain has an upper bound. So by Zorn's lemma, this set will have a maximal element. This maximal element can be shown to qualify as the prime filter we are looking for. \\ \\
 \textbf{Proposition:} For any distributive lattice $\mathcal{D}=(D, \vee, \wedge, \lozenge)$, the map $(\cdot)^{\wedge}$ is an embedding of $D$ in 
 $(\mathcal{P}(B_D), \cup, \cap,m_{Q_{\lozenge}})$. \\ \\
-\textbf{Proof:} Checking that the binary operations are respected follows from definitions of $\wedge$, filter and a prime filter. \\
+\textbf{Proof:} Checking that the binary operations are respected follows from definitions of $\wedge$, filter and prime filter. \\
 That this map is injective is proved as follows:  
 Suppose $\widehat{a} = \widehat{b}$ but $a \neq b$. WLOG $a \nleq b$
 Consider the filter 
@@ -369,7 +361,7 @@ given by
 \[
 \mathrm{rep}(g) = (Q_g, Q_{-g})
 \]
-is an embedding of $\mathcal{G}$ into $G_m(B_{\mathcal{M}})$. \\ \\
+is an embedding of $\mathcal{G}$ into $\mathcal{G}_m(B_{\mathcal{M}})$. \\ \\
 \textbf{Proof:} That it is a homomorphism follows from 1,2,3 of the last proposition. It is an embedding follows from separability and 4 of the last proposition. \\ \\
 Now let us sketch the idea of the proof of 1. 
 Let $p$ be an arbitrary prime filter and $T$ an arbitrary set.\\
@@ -420,19 +412,16 @@ Meaning we want the following to happen: $\Delta(\lozenge^{'}_g a) = \lozenge^{'
 
 \[
 \lozenge^{'}_g(a,a) = \bigl(\lozenge^{'}_g a, \; \lozenge^{'}_g a \bigr).
-\]
-
+\]\\
 This gives us the hint about what to do with the pairs $(a,b)$ where $a,b \in G$.
 Send $\lozenge^{'}_g(a,b) \mapsto (\lozenge_g a, \; \lozenge_g b).$\\ \\
 Next we want the element $(\top,\bot)$ to be the separating element at the $g'$-level. Put $\Delta^{'}_g(\top,\bot) = (g,g) \; \text{for every } g \in G.$
 We are still left with elements of the form 
 \[
 (\top, a) \quad \text{with } a \neq \bot \quad \text{and} \quad (a,\bot) \quad \text{with } a \neq \top.
-\]
-
+\]\\
 The elements bigger than $(\top, a)$ are of the form $(\top, -)$. So sending $(\top,a)$ to $(\top, \top)$ will preserve monotonicity from above and below. 
 Similarly, elements smaller than $(a,\bot)$ are of the form $(-,\bot)$. So sending $(a,\bot)$ to $(\bot,\bot)$ preserves monotonicity again. \\ \\
-
 The above highlights another utility of adding $\top$ and $\bot$. Adding anything else would not tell us easily(if at all possibly) where exactly to send such elements. Top/bottom makes life easy due to its cannonical relationship with other elements. We know exactly what to do with them. \\ 
 Formally, we define, for an arbitrary element $g \in G$, the map 
 \[
@@ -447,13 +436,11 @@ by putting
 (\top, \top) & \text{if } a = \top \text{ and } b \neq \bot, \\[6pt]
 (\bot, \bot) & \text{if } a \neq \top \text{ and } b = \bot.
 \end{cases}
-\]
-
+\]\\
 Given a game algebra $\mathcal{G}$, let $\mathcal{G}'$ be the module 
 \[
 (G', \vee', \wedge', -', \lozenge'_g)_{g \in G}.
-\]
-
+\]\\
 \textbf{Claim:} If $\mathcal{G}$ is a game algebra, then $\mathcal{G}'$ is a separable game module. \\ \\
 \textbf{Proof of Claim.} We have already seen that the structure 
 $(G', \vee', \wedge', -')$ is a de Morgan algebra, and it is easy to see that the operations 
