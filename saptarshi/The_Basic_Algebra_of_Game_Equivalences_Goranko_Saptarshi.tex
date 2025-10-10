@@ -2,6 +2,7 @@
 
 \usepackage[a4paper, margin=2cm]{geometry}
 
+
 \usepackage[dvipsnames]{xcolor}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -12,6 +13,9 @@
 \usepackage{hyperref}
 \usepackage{bm}
 \usepackage{cancel}
+
+
+\usetikzlibrary{shapes} 
 
 \renewcommand{\phi}{\varphi}
 \newcommand{\move}{\lozenge}
@@ -34,7 +38,7 @@
 \usetikzlibrary{matrix}
 
 
-\title{The \textbf{Goranko Paper} on completeness of axioms for Game algebra given by Benthem}
+\title{The \textbf{Goranko Paper} on completeness of axioms for Game algebra given by Van Benthem}
 \author{Saptarshi Sahoo}
 
 
@@ -44,15 +48,18 @@
 	\tikzstyle{yellow_vertex}=[fill=yellow, draw=black, shape=circle, text=red]
 	\tikzstyle{red_edge}=[fill=none, ->, draw=red, thick]
 	\tikzstyle{text_vertex} = [text=blue]
-	I will request the reader to keep a copy of the Goranko's paper along side while going thorugh it. Most of the places where I have nothing to add to the proofs, I've directly asked to read the proof from the paper, since it makes no sense in duplicating well written proofs. I have added notes to certain proofs which shall be useful while going through the paper. 
 	
-	The core ideas of this paper are ``minimal cannonical game terms" and ``the modal translation of game terms". He gives a, sort of, normal form for formula in the game language $\gl$. Let's do a little bit of excursion through Proposotinal Logic($\pl$). In $\pl$, think about the Disjunctive Normal Form(DNF):
+	\tikzstyle{vertex}=[fill=Yellow, draw=black, shape=circle, text=Red, inner sep=0.6pt]
+	\tikzstyle{dot} = [fill=red,inner sep=0pt, shape=circle, minimum size=1pt]
+	\tikzstyle{edge}=[fill=none, ->, draw=red, thick]
+	
+	In this article we shall go through the Goranko's Paper. The core ideas of this paper are ``minimal cannonical game terms" and ``the modal translation of game terms". He gives a, sort of, normal form for formula in the game language $\gl$, which he calls ``minimal canonical terms". Then he uses this normal form to talk about formula in $\gl$, from the well established Modal Logic $\ml$. This we say `purely syntactic' reasoning from $\ml$. This normal form also gives a better inductive structure on formula of $\gl$. Before diving into the meat of the paper let's do a little bit of excursion through Proposotinal Logic($\pl$). In $\pl$, think about the Disjunctive Normal Form(DNF):
 	
 	\begin{equation}
 	\bigvee_{i\in I} \bigwedge_{k \in K_i} \phi_{i,k}
 	\end{equation}
 	
-	Note here $\phi_{i,k}$ is a atomic term or it's negation, if we were to embed $\pl$ in a first order logic, say, $\L_{\pl}$. Similar thought is expressed while defining ``canonical terms". But obviously in our $\gl$ appropriate syntatic element will be used in place of $\L_\pl$'s atomic terms. But one question arises here why DNF? Why not CNF? I've an explantion which I shall giver later. 
+	Note here $\phi_{i,k}$ is a atomic term or it's negation, if we were to embed $\pl$ in a first order logic, say, $\L_{\pl}$. Similar thought is expressed while defining ``canonical terms". But obviously in our $\gl$ appropriate syntatic element will be used in place of $\L_\pl$'s atomic terms. But one question arises here why DNF? Why not CNF? We shall see the an explanation later in the article.
 	
 	Now let's discuss a bit about the translation to Modal Logic($\ml)$. Whenever we talk about playing a two player game, we use a phrase something on the line: ``there is a play for player 1 such that for every play of the player 2, something holds". This thought is expresed verbosely in $\ml$ using something on the line of ``$\move\Move(\cdots)$". Also he uses $\ml$ to talk about ``syntax" of $\gl$ inside $\ml$. These ideas will be more clearer as we proceed.
 	
@@ -136,14 +143,18 @@
 	Note that the respective identities for $\land$, as well as the dual absorption,
 	distributivity, left-distribution for $\land$ and $\circ$, right-distributive inclusion $G_1\circ(G_2\land G_3) \cle G_1 \circ G_2$, and the two De Morgan’s laws for $\lor$,$\land$ and $ ^d$ easily follow from the definition of $\land$ and $\textbf{GA}^\iota$ in the equational logic for the algebra of games, which includes the standard set of derivation rules reflecting the fact that $\sim$ is a congruence in the algebra of games.
 	
-	\begin{theorem}[Soundness]\label{th4}
+	\begin{remark}
+		In each declaration of theorem of this article, P$n$ or C$n$ or L$n$ or T$n$ is attached to refer to the respective Proposition, Corollary, Lemma or Theorem number from the Goranko's paper.
+	\end{remark}
+	
+	\begin{theorem}[Soundness(P5)]\label{th4}
 		All identities in $\textbf{GA}^\iota$ are valid.
 	\end{theorem}
 	\begin{proof}
-		Check if all the axioms are valid.
+		It's a routine check for valididity of the axiom.
 	\end{proof}
 	
-	The obvious next question is Completenenss. But before that we sould have an interlude explaning ``Cannonical Terms" and ``Minimal Canonical Terms". After that I will draw out the skeleton for the proof of completenss.
+	The obvious next question is Completenenss. But before that we sould have an interlude explaning in details of ``Cannonical Terms" and ``Minimal Canonical Terms". After that we will observe, bird's eye point of view, how the proof of the completness theorem is laid down in Goranko's paper.
 	
 	\section{Canonical Game Terms}
 	\begin{definition}\textbf{Canonical Terms} are defined recursively:
@@ -172,7 +183,7 @@
 		\end{itemize}
 	\end{remark}
 	As in $\pl$ every formula can be written in a DNF, same is applicable for game terms in $\gl$. Next theorem describes that.
-	\begin{theorem}\label{th8}
+	\begin{theorem}[P8]\label{th8}
 		Every game term $G$ is equivalent to a canonical game term. This can be proved inside $\textbf{GA}^\id$
 	\end{theorem}
 	\begin{proof}
@@ -181,7 +192,7 @@
 		The remaining case is $G = \com{G_1}{G_2}$. By induction hypothesis both $G_1$ and $G_2$ are in canonical form. We can do another layer of induction on $G_1$ with respect to it's canonical form. So $G_1$, following the definiton of canonical term, is either an $\id$ or of the form $\bigvee_{i\in I} \bigwedge_{k \in K_i} g_{ik}\circ G_{ik}$ where certain condition on $G_{ik}$ and $g_{ik}$ holds. For the $G_1 = \id$ case, it's trivial. Use $\vdash \com{\id}{G} \sim G $. For another case, we can use the left distributivity for $\lor$ and $\land$. So we get $G = \bigvee_{i\in I} \bigwedge_{k \in K_i} g_{ik}\circ G_{ik} \circ G_2$. Now by second layer of induction hypothesis, $\com{G_{ik}}{G_2}$ can be represented in a canonical term form. Hence whole $G$ is in canonical form.
 		\end{proof}
 		
-		Next we define a concept called  \textbf{embedding}. This will capture the idea of \textbf{inclusion} from a `purely syntactic' view point. This view does not depend on the `$\vdash$' at all. Rather it gives a way to talk about game inclusion from a different language altogether. The language of $\ml$.
+		Next we define a concept called  \textbf{embedding}. This will capture the idea of \textbf{inclusion} from a `purely syntactic' view point. This view does not depend on the `$\vdash$' at all. Rather it gives a way to talk about game inclusion from the language of $\ml$. 
 		\begin{definition}
 			We define recursively \textbf{embedding} of canonical terms, denoted by $\rightarrowtail$ as follows:
 			
@@ -194,19 +205,19 @@
 			\end{itemize}
 		\end{definition}
 		
-		\begin{theorem}\label{th9}
+		\begin{theorem}[P12]\label{th9}
 			If $G$ ,$H$  are canonical terms and $G\rightarrowtail H$ then $G\cle H$ is	provable in $\textbf{GA}^\id$. Hence $\textbf{GA}^\id \vdash G \lor H \sim H$ and $\textbf{GA}^\id \vdash G \land H \sim G$.
 		\end{theorem}
 		\begin{proof}
 			The proof pulls through induction on G and H. It primarily uses Right-distributive inclusion axiom.
 		\end{proof}
 		\begin{remark}
-			Since $\textbf{GA}^\id$ is sound, the last theorem also connects purely syntactic proeprty such as embedding with inclusion in the semantic case. This and reverse  of this, which shall be proved later, will be used to show the completeness. Before that let's define something which will give more control and structure on the game terms. 
+			Since $\textbf{GA}^\id$ is sound, the last theorem also connects `purely syntactic' property such as embedding with inclusion in the semantic case. This and reverse  of this, which shall be proved later, will be used to show the completeness. Before that let's define something which will give more control and structure on the game terms. 
 		\end{remark} 
 		\subsection{Minimal Canonical Terms}
 		\begin{definition}
 			\label{def10}
-			Again Minimal canonical term i defined recursively:
+			Again Minimal canonical term is defined recursively:
 			\begin{itemize}
 				\item $\id$ is a minimal canonical term.
 				\item Let $G = \bigvee_{i\in I}\bigwedge_{k \in K_i} g_{ik}\circ G_{ik}$ be a canonical term where all $G_{ik}$ are minimal. Then G is minimal if:
@@ -220,7 +231,7 @@
 		\end{definition}
 		Thus, minimal canonical terms are systematically `minimized’ canonical
 		terms.
-		\begin{theorem}\label{th13}
+		\begin{theorem}[P14]\label{th13}
 			Every term G can be reduced to an equivalent minimal
 			canonical term $c(G)$ and this can be done provably in $\textbf{GA}^\id$.
 		\end{theorem}
@@ -235,7 +246,7 @@
 			Two canonical terms G, H are isomorphic, denoted by $G \simeq H$, if one can be obtained from the other by means of successive permutations
 			of conjuncts (resp. disjuncts) within the same $\bigwedge$’s (resp. $\bigvee$’s) in subterms.
 		\end{definition}
-		\begin{theorem}\label{th15}
+		\begin{theorem}[P10]\label{th15}
 		Isomorphic terms are equivalent, provably in $\textbf{GA}^\id$.
 		\end{theorem}
 		\begin{proof}
@@ -243,21 +254,21 @@
 		\end{proof}
 		
 		\subsection{The big picture...}
-		First I shall state two theorems, whose proof will follow later.
-		\begin{theorem}\label{th16}
+		First we look at two theorems, whose proof will follow later.
+		\begin{theorem}[L24]\label{th16}
 			if G, H are  minimal canonical terms then $\models G\cle H$ iff $G \rightarrowtail H$.
 		\end{theorem}
 		\begin{remark}
 			Theorem \ref{th16} connects `semantics world' to a `purely syntactic' world. Note this notion of syntactic connection does not depend on `$\vdash$', rather, we shall see later, this type of syntactic discussion shall purely be done via $\ml$.
 		\end{remark}
-		\begin{theorem}\label{th17}
+		\begin{theorem}[P25]\label{th17}
 			if G, H are minimal canonical terms such that $G\rightarrowtail H$ and $H \rightarrowtail G$ then $G\simeq H$.
 		\end{theorem}
 		\begin{remark}
 			Theorem \ref{th17} talks about earlier discussed `purely syntatic' notion. And just as above, these syntactic notion  will be focused through $\ml$.
 		\end{remark}
 		From Theorem \ref{th16} and Theorem \ref{th17} we get the following 
-		\begin{theorem}\label{th18}
+		\begin{theorem}[C26]\label{th18}
 			The minimal canonical terms G and H are equivalent(in semantics sense) iﬀ
 			they are isomorphic.
 		\end{theorem}
@@ -266,7 +277,7 @@
 		\end{proof}
 		Now we shall prove main completeness theorem using theorem \ref{th18}.
 		
-		\begin{theorem}[Completenes]
+		\begin{theorem}[Completenes, T6]
 			Every valid term identity of the game algebra can be derived from $\textbf{GA}^\id$ in the standard equational logic.
 		\end{theorem}
 		\begin{proof}
@@ -305,7 +316,7 @@
 		
 		To begin with, we consider the \textbf{modal language} $\ml$ comprising:
 		\begin{itemize}
-			\item a set of \textit{atomic variable} $V =\{p_a|mid a\in A\} \cup \{q\}$. Here $q$ is \textit{auxilary variable}.
+			\item a set of \textit{atomic variable} $V =\{p_a\mid a\in A\} \cup \{q\}$. Here $q$ is \textit{auxilary variable}.
 			
 			\item the usual connectives: $\lor$, $\land$, $\neg$, $\move$ and $\Move$.
 		\end{itemize}
@@ -318,7 +329,7 @@
 			\begin{equation} 
 				\begin{split}
 					& \phi(q) : \mathcal{P}(S) \rightarrow \mathcal{P}(S)\\
-					& X \mapsto \{s \in S \mid \mathcal{M}, s \models \phi \text{, where $V(q) = X$ }\}
+					& X \mapsto \{s \in S \mid \mathcal{M'}, s \models \phi \text{, where } \mathcal{M'}:= \langle S, R, V' := V\setminus\{(q,V(q))\} \cup \{(q,X\cup V(q)) \} \rangle \}
 				\end{split}
 			\end{equation} 
 			So $\phi(q)$ acts as an set operator. Later we shall see somwthing like $M,s\models \phi(X)$, where $X\subseteq S$. It means $s\in \phi(X)$.
@@ -339,7 +350,7 @@
 		\end{itemize}
 		Somethings to note before we move on:
 		\begin{itemize}
-			\item Every formula $m(G)$ is  monotone in q. \textcolor{red}{add the proof later}.
+			\item Every formula $m(G)$ is  monotone in q. A proof sketch: Do an induction based proof on modal formula $\phi$.
 			\item $m(g_a^d) = \Move\move(p_a \land q)$.
 			\item $m(G_1 \land G_2) = m(G_1) \land m(G_2)$
 			\item $m^d(G_1 \circ G_2) = m^d(G_1)(m^d(G_2))$
@@ -348,7 +359,7 @@
 			$s\rho_a^2(S\setminus X)$ iff $\neg s \rho_a^1 X$. he class of determined
 			game boards will be denoted by \textbf{DET}.
 		\end{definition}
-		\begin{theorem}\label{eq23}
+		\begin{theorem}[T15]\label{eq23}
 			For any game terms G, H, if $\textbf{DET}\models G \cle H$, then $\models_{\ml} m(G) \rightarrow m(H)$.
 		\end{theorem}
 		\begin{proof}
@@ -393,7 +404,7 @@
 			Now, we said earlier, $M,u \models m(G)$ and $M,u \cancel{\models} m(H)$. Let $X=V(q)$ So $u\rho_{G}^1X$ but, $\neg u\rho_{H}^1X$. Hence $B_M \cancel{\models} G \cle H$.
 		\end{proof}
 		
-		\begin{theorem}\label{th24}
+		\begin{theorem}[L19]\label{th24}
 			Let G and H be minimal canonical terms. The followings are equivalent:
 			\begin{enumerate}
 				\item  $G \cancel{\cle}H$
@@ -462,10 +473,10 @@
 				\item Possibly, $F_\id=\{q\}$ or $F_\id = \{\neg q\}$, depending on whether there is an idle term in $\{g_{ik} \circ G_{ik} \mid k\in K_i\}$ or $\{h_{jm_i} \circ H_{jm_i}\mid j \in J\}$ respectively.
 				\end{enumerate}
 			
-			We shall build a model $M= \langle W,R,V\rangle$ which will obey the $F_\mathbf{A}$, $F_\mathbf{B}$, $F_\mathbf{\Gamma}$ and $F_\mathbf{\Delta}$ at a root vertex $s$. The rest is better to follow from the paper itself. I've nothing to add more here.
+			Next we shall build a model $M= \langle W,R,V\rangle$ which will obey the $F_\mathbf{A}$, $F_\mathbf{B}$, $F_\mathbf{\Gamma}$ and $F_\mathbf{\Delta}$ at a root vertex $s$. To save ourselves of redundancies, it's best to follow the proof from the paper itself. 
 		\end{proof}
 		
-		\begin{theorem}\label{th26}
+		\begin{theorem}[C20]\label{th26}
 			For any game terms G,H:
 			\begin{itemize}
 				\item $\models_{\ml} m(G) \rightarrow m(H)$ iff $\models G \cle H$.
@@ -479,18 +490,33 @@
 				Theorem \ref{th26} solidifies that fact that we don't need \textbf{DET} in Theorem \ref{eq23}.
 			\end{remark}
 		
-		\begin{theorem}\label{th25}
+		\begin{theorem}[L22]\label{th25}
 			Let $G$, $H$ be any terms and $g$, $h$ be non-idle literals. Then
 			$g\circ G\cle h\circ H$ iﬀ $g= h$ and $G\cle H$.
 		\end{theorem}
 		\begin{proof}
-			The paper's proof is good enough.
+			It's best to follow the paper's proof.
 		\end{proof}
 		\begin{remark}
 			Theorem \ref{th25} is proving a property which holds for \textit{embedding} of canonical terms. So in a way, the modal translation is helping us to establish a connection with the semantics and the `purely syntactic' notions. Similar things can  be noticed for the next theorem.
 		\end{remark}
-		Given a Kripke model $M$ and a state $s$, $T(M,s,u)$ will denote the model obtained from $M$ by adding two new states $u,v$ such that $uRv$ and $vRs$.
-		\begin{theorem}\label{th27}
+		Given a Kripke model $M$ and a state $s$, $T(M,s,u)$ will denote the model obtained from $M$ by adding two new states $u,v$ such that $uRv$ and $vRs$. See \ref{fig2}. This will be used in the proof of theorem \ref{th27}.
+		\begin{figure}[ht]
+			\centering
+			\begin{tikzpicture}
+				\node[style=vertex, ellipse,inner xsep =10pt, inner ysep =5pt] (q1) at (0.0,0.0) {M};
+				\node[style=dot, label=right:\textcolor{Green}{$s$}] (q2) at (-.3, .3) {};
+				\node[style=vertex](q3)at (-1.5,0.5) {v};
+				\node[style=vertex] (q4) at (-2.5, 0.1) {u};
+				
+				\draw[style=edge] (q4) to (q3);
+				\draw[style=edge] (q3) to (q2);
+				
+			\end{tikzpicture}
+			\caption{$T(M,s,u)$.}
+			\label{fig2}
+		\end{figure}
+		\begin{theorem}[L23]\label{th27}
 			Next we will take care of the case when either $g$ or $h$ is an idle term :
 			\begin{itemize}
 				\item $g\circ G\cle \id\circ\id$ iﬀ $g$ is an idle literal and $G\cle \id$.
@@ -498,7 +524,7 @@
 			\end{itemize}
 		\end{theorem}
 	\begin{proof}
-			The paper's proof is good enough.
+			Best to follow the proof from the paper.
 		\end{proof}
 		
 		\begin{proof}[Proof of theorem \ref{th16}]
