@@ -40,13 +40,12 @@ Below we list some of the most natural game operations that one could consider i
 \underline{\textbf{composition:}} $g \; \lozenge \; h$ is the game in which a play of $g$ is followed by a play of $h$ repeatedly. \\ \\
 We have the following natural definitions (1) of outcome relations of composed games: 
 \begin{itemize}
-
 \item $pR^{i}_{g \vee_{i}h}T$ iff $pR_{g}^{i}T$ or $pR_h ^{i}T$
 \item $pR^{i}_{g \vee_{1-i} h}T$ iff $pR_{g}^{i}T$ and $pR_h ^{i}T$
 \item $pR_{-g}^{i}T$ iff $pR_{g}^{1-i}T$
 \item $pR_{-g}^{i}T$ iff $pR_{g}^{1-i}T$
-\item $pR_{g \; \lozenge \; h}^{i}}T$ iff $pR_{g}^{i}U$ for some set U such that $uR_{h}^{i}T$ for all u \in U
-\end{itemize} \\ \\
+\item $pR_{g \; \lozenge \; h}^{i}T$ iff $pR_{g}^{i}U$ for some set U such that $uR_{h}^{i}T$ for all $u \in U$
+\end{itemize} 
 It is easily verifiable that the conditions of monotonicity and consistency are propagated. Notion of game equivalence also extends.
 \section{Capturing all this in language of logic and raising the axiomatization problem}
 Define game language comprising of atomic games and function symbols $\{\vee_{0},\vee_{1},-,\lozenge\}$. A game expression is a term in this game language built out of atomic games and function symbols. \\
@@ -67,8 +66,8 @@ R^g_i \subseteq \mathcal{P}(B \times \mathcal{P}(B)), \quad i = 0,1.
 \]
 This motivates the definition of a class of concrete algebras 
 called \emph{board algebras}.
-\subsection{Board Algebras: A class of concrete algebras} \\
-Let \( B \) be a set. We denote by 
+\subsection{Board Algebras: A class of concrete algebras} 
+Let $( B )$ be a set. We denote by 
 \[
 O(B) = \mathcal{P}(B \times \mathcal{P}(B))
 \]
@@ -109,14 +108,14 @@ G(B) = O(B) \times O(B):
 \] \\
 We call
 \[
-\mathcal{G(B)} = \big(G(B), \sqcup, \sqcapcap, -, \square \big)
+\mathcal{G(B)} = \big(G(B), \sqcup, \sqcap, -, \square \big)
 \]
 the \emph{full outcome algebra} over \( B \).  
 Its subalgebras are referred to as \emph{outcome algebras} over \( B \).
-An outcome algebra \( (A, \sqcup, \sqcap, -}, \square) \) is said to be \emph{monotone} if \( A \subseteq G_m(B) \), and a \emph{board algebra} if \( A \subseteq G_{\mathrm{mc}}(B) \).\\ \\
+An outcome algebra $( (A, \sqcup, \sqcap, -), \square) )$ is said to be \emph{monotone} if $( A \subseteq G_{m(B)} )$, and a \emph{board algebra} if $( A \subseteq G_{\mathrm{mc}}(B) )$.\\
 The corresponding full structures are:
 \[
-\mathcal{G}}_m(B) = \big(G_m(B), \sqcup, \sqcap, -, \square\big), \quad
+\mathcal{G}_{m(B)} = \big(G_m(B), \sqcup, \sqcap, -, \square\big), \quad
 \mathcal{G}_{\mathrm{mc}}(B) = \big(G_{\mathrm{mc}}(B), \sqcup, \sqcap, -, \square\big),
 \]
 known respectively as the \emph{full monotone outcome algebra} and the \emph{full board algebra} over \( B \). \\ \\
@@ -190,7 +189,7 @@ satisfying the following equations:
 \end{align*}
 A game module is \emph{separable} if for all distinct elements $g$ and $h$ of $G$ 
 there is an $x \in M$ such that $\lozenge_g x \neq \lozenge_h x$. 
-\end{definition}
+
 
 \noindent
 Note that with this definition, we may indeed see a given game algebra 
@@ -209,7 +208,7 @@ following three steps:
     algebra over $\mathcal{M}$.
     \item Finally, we will prove that any monotone outcome algebra can be 
     embedded in a board algebra.
-\end{enumerate} \\
+\end{enumerate}
 The proof of Theorem is immediate from these results.
 \subsection{Repository of tools}
 
@@ -262,7 +261,7 @@ p Q_{\lozenge} T \quad \text{iff} \quad \lozenge a \in p \ \text{for all } a \in
 \]
 It can be checked this outcome relation is monotone. \\ \\
 Below we state and sketch the proof of The Prime Filter Theorem which will be useful now and in what is to come. \\ \\
-\textbf{Theorem:} $(D,\vee,\wedge)$ be a distributive lattice and let $F$ be a filter with $x_0\notinF$. 
+\textbf{Theorem:} $(D,\vee,\wedge)$ be a distributive lattice and let $F$ be a filter with $x_0\notin F$. 
 Then there is a prime filter $P$ such that $x_0\notin P$ and $F\subseteq P$.\\ \\
 \textbf{Proof:} The proof idea is as follows: We can consider the set of all such filters K with the property that $x_0 \notin K $. This set is non-empty. It can be shown every chain has an upper bound. So by Zorn's lemma, this set will have a maximal element. This maximal element can be shown to qualify as the prime filter we are looking for. \\ \\
 \textbf{Proposition:} For any distributive lattice $\mathcal{D}=(D, \vee, \wedge, \lozenge)$, the map $(\cdot)^{\wedge}$ is an embedding of $D$ in 
@@ -390,21 +389,21 @@ an object $s$ that will satisfy $\Diamond_g s = g$ for every $g \in G$. \\ \\
 The first part of the construction can be applied to arbitrary de Morgan lattices; fix such an algebra $\mathcal{M} = (M, \vee, \wedge, -)$. 
 In a number of steps we will define an extension $\mathcal{M}'$ of $\mathcal{M}$ which satisfies certain nice properties.\\ \\
 The most hassle-free way to add new elements is by introducing top/bottom elements, as we know exactly how to define the operations involving them. Infact, these elements will serve more purpose as we will see soon. \\ \\
-Let $\mathcap{D}$ be any distributive lattice. Define $D^b = D \cup \{\top, \bot\}$, where $\top, \bot$ are new elements. The top and bottom added are treated to be strictly new elements here. \\ \\
+Let $D$ be any distributive lattice. Define $D^b = D \cup \{\top, \bot\}$, where $\top, \bot$ are new elements. The top and bottom added are treated to be strictly new elements here. \\ \\
 Given any de Morgan lattice $\mathcal{M} = (M, \vee, \wedge, -)$,  
 let $M''$ be the set $(M \cup \{\top, \bot\})^2$, and let $\vee''$ and $\wedge''$ be the coordinatewise join and meet operations on $M''$.  
 In other words, the algebra $(M'', \vee'', \wedge'')$ is the distributive lattice product $(M, \vee, \wedge)^{b} \times (M, \vee, \wedge)^{b}$. \\
 The operation \[-' : M'' \to M''\] is defined by $-'(x,y) = (-y, -x)$. 
 and we define $\mathcal{M}''$ as the structure $(M'', \vee'', \wedge'', -')$.  
 In general, $\mathcal{M}''$ is not isomorphic to $\mathcal{M}^{b} \times \mathcal{M}^{b}$. \\ \\
-The diagonal map $\Delta : M \longrightarrow M^''$ is an embedding. \\ \\
-Lest we tend to lose sight, let us remind ourselves that we seek to embed a game algebra $\mathcal{G}$ seen as a game module over itself, inside a separable game module $\mathcal{G}'$ over $\mathcal{G}$. The above construction will take care of it at the De-Morgan level. The pair (\top,\bot)$ will be the 'esteemed' separating element. For this purpose, $\mathcal{M}''$ seems too big for the purpose of embedding $\mathcal{M}$ inside it and also being separable. The subalgebra generated by $\Delta(M)$ and $(\top,\bot)$ does the job in the most minimal sense. \\   
+The diagonal map $\Delta : M \longrightarrow M''$ is an embedding. \\ \\
+Lest we tend to lose sight, let us remind ourselves that we seek to embed a game algebra $\mathcal{G}$ seen as a game module over itself, inside a separable game module $\mathcal{G}'$ over $\mathcal{G}$. The above construction will take care of it at the De-Morgan level. The pair $(\top,\bot)$ will be the 'esteemed' separating element. For this purpose, $\mathcal{M}''$ seems too big for the purpose of embedding $\mathcal{M}$ inside it and also being separable. The subalgebra generated by $\Delta(M)$ and $(\top,\bot)$ does the job in the most minimal sense. \\   
 So we take $\mathcal{M}'$, our target algebra. More precisely, 
-\[\mathcal{M}^{'} = (M \cup \{\top}) \times (M \cup \{\bot}) \cup \{(\top, \top), (\bot, \bot)\}. \]
-By the above discussion, $\Delta : M \longrightarrow M^'$ is an embedding. \\ \\
+$\mathcal{M}' = (M \cup \{\top\}) \times (M \cup \{\bot\}) \cup \{(\top, \top), (\bot, \bot)\}.$
+By the above discussion, $\Delta : M \longrightarrow M'$ is an embedding. \\ \\
 Finally, we focus on the game module set-up. Let $(G',\vee', \wedge', -)$ be defined as above. \\ 
 It is left to define an operation $\lozenge_{g}^{'} : G' \longrightarrow G'$ for every element $g \in G'$, to turn it into a game module over $G$. We will motivate the construction before revealing it in full glory: \\ \\
-It is natural to want the diagonal map $\Delta : G \to G^'$ to be an embedding in the game module level as well, after already having it in the de Morgan algebra level. \\
+It is natural to want the diagonal map $\Delta : G \to G'$ to be an embedding in the game module level as well, after already having it in the de Morgan algebra level. \\
 Meaning we want the following to happen: $\Delta(\lozenge^{'}_g a) = \lozenge^{'}_g (\Delta(a))$
 \[
 \Delta(\lozenge^{'}_g a) = \lozenge^{'}_g(a,a).
