@@ -1,0 +1,62 @@
+\documentclass[10pt]{article}
+
+\usepackage[a4paper, margin=0.5cm]{geometry}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage{cancel}
+
+\usetikzlibrary{shapes} 
+
+\renewcommand{\phi}{\varphi}
+\newcommand{\move}{\lozenge}
+\newcommand{\Move}{\square}
+\newcommand{\pl}{\mathcal{PL}}
+\newcommand{\gl}{\mathcal{GL}}
+\newcommand{\ml}{\mathcal{ML}}
+\newcommand{\ga}{\mathcal{GA}}
+\newcommand{\id}{\iota}
+\newcommand{\com}[2]{#1 \circ #2 }
+\newcommand{\cle}{\preccurlyeq}
+\newcommand{\cge}{\succcurlyeq}
+\renewcommand{\L}{\mathcal{L}}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\usetikzlibrary{matrix}
+
+
+\title{The \textbf{Goranko Paper} on completeness of axioms for Game algebra given by Van Benthem}
+\author{Saptarshi Sahoo}
+
+\begin{document}
+	\maketitle
+	
+	Aristotle introduced Syllogism as one of the first syestem of logic. Syllogism is a way of deduction, where two premises are given and from them a conclucion is deduced. Each premises forms a relation between two classes, one stated at subject and another in the predicate region of the premise. A premise looks like the following : Quantifier (Subject) Copula (Predicate). There are four kinds of standard form for premises:
+	
+	\begin{itemize}
+		\item  \textbf{Universal Affirmative (A)} : All S are P. Another way to think about this is $S \subseteq P$
+		\item \textbf{Universal Negative (E)} : No S is P. Another way to think about this is $S \cap P = \emptyset$
+		\item \textbf{Particular Affirmative (I)}: Some S is P. Another way to think about this is $S \cap P \ne \emptyset$
+		\item \textbf{Particular Negative(O)} :Some S is not P. Another way to think about this is $S \setminus P \ne \emptyset$
+	\end{itemize}
+	Where S is subject and P is the predicate. S and P can also be called as variable. These above kinds are also called as "moods" of premise. Also the variables can change order and lead to a new kind of premise. The two premises connects three variables; an example : Premise 1: No liquors(L) are sweet(S) things. Premise 2: Some drinks(D) are sweet(S) things. Conclusion : Therefore, some drinks(D) are not liquors(L). It can also be observed that one of the variable out of the three is not there in the conclusion and particularly that variable is common in the both of the premises. Hence depending on the placement of variable which does not occur in the conclusion, we get four types of "figure" for : 
+	
+	\begin{tabular}{c c c c}
+		1 &2 &3&4 \\
+		\hline
+		A-B & B-A &A-B & B-A \\
+		B-C & C-B & C-B  & B-C \\
+	\end{tabular}
+\end{document}
